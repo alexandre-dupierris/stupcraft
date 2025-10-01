@@ -71,34 +71,6 @@ header {
   cursor: pointer;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    flex-direction: column;
-    background: #102a33;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    padding: 15px;
-    border-left: 2px solid #00c8d6;
-  }
-
-  .nav-menu.active {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .wiki-nav a {
-    flex: 1 1 auto; /* ils s’adaptent à l’espace disponible */
-    text-align: center;
-    min-width: 120px; /* largeur mini pour rester lisibles */
-  }
-}
-
 /* --- CONTENU PRINCIPAL --- */
 main {
   padding: 90px 20px 40px; /* espace pour le header fixe */
@@ -260,4 +232,42 @@ footer {
   width: 100%;
   text-align: center;
   background-color: #0f1c24;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background: #102a33;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    padding: 15px;
+    border-left: 2px solid #00c8d6;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .wiki-nav a {
+    flex: 1 1 auto; /* ils s’adaptent à l’espace disponible */
+    text-align: center;
+    min-width: 120px; /* largeur mini pour rester lisibles */
+  }
+}
+
+@media (max-width: 500px) {
+  .wiki-nav {
+    flex-direction: column;
+  }
+
+  .wiki-nav a {
+    width: 100%;
+  }
 }
