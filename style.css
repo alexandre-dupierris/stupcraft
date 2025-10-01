@@ -91,6 +91,12 @@ header {
   .hamburger {
     display: block;
   }
+
+  .wiki-nav a {
+    flex: 1 1 auto; /* ils s’adaptent à l’espace disponible */
+    text-align: center;
+    min-width: 120px; /* largeur mini pour rester lisibles */
+  }
 }
 
 /* --- CONTENU PRINCIPAL --- */
@@ -110,6 +116,9 @@ h1 {
 
 /* --- WIKI --- */
 .wiki-nav {
+  display: flex;
+  flex-wrap: wrap; /* permet le retour à la ligne automatique */
+  gap: 10px; /* espace propre entre les boutons */
   background: #152f3a;
   border-left: 4px solid #00c8d6;
   padding: 12px;
