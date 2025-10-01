@@ -73,8 +73,8 @@ header {
 
 /* --- CONTENU PRINCIPAL --- */
 main {
-  padding: 90px 20px 40px; /* espace pour le header fixe */
-  max-width: 900px;
+  padding: 90px 20px 40px;
+  max-width: 950px;
   margin: auto;
 }
 
@@ -94,8 +94,8 @@ h4 {
 /* --- WIKI --- */
 .wiki-nav {
   display: flex;
-  flex-wrap: wrap; /* permet le retour à la ligne automatique */
-  gap: 10px; /* espace propre entre les boutons */
+  flex-wrap: wrap;
+  gap: 10px;
   background: #152f3a;
   border-left: 4px solid #00c8d6;
   padding: 12px;
@@ -113,6 +113,13 @@ h4 {
   color: #e6f1f5;
   text-decoration: none;
   transition: background 0.3s, color 0.3s;
+  font-size: 0.8em;
+}
+
+.wiki-nav a {
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 120px;
 }
 
 .wiki-nav a:hover {
@@ -261,9 +268,9 @@ footer {
   }
 
   .wiki-nav a {
-    flex: 1 1 auto; /* ils s’adaptent à l’espace disponible */
+    flex: 1 1 auto;
     text-align: center;
-    min-width: 120px; /* largeur mini pour rester lisibles */
+    min-width: 120px;
   }
 }
 
