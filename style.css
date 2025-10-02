@@ -21,17 +21,17 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 28, 36, 0.7); /* bleu très foncé transparent */
-  z-index: -1; /* reste derrière le contenu */
+  background: rgba(15, 28, 36, 0.7);
+  z-index: -1;
 }
 
 /* --- HEADER / MENU --- */
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  background: #102a33; /* bleu-gris sombre */
-  color: #00c8d6; /* cyan doux */
+  background: #102a33;
+  color: #00c8d6;
   padding: 12px 20px;
   position: fixed;
   top: 0;
@@ -59,7 +59,7 @@ header {
 }
 
 .nav-menu a:hover {
-  color: #00c8d6; /* cyan au survol */
+  color: #00c8d6;
 }
 
 .hamburger {
@@ -74,7 +74,7 @@ header {
 /* --- CONTENU PRINCIPAL --- */
 main {
   padding: 90px 20px 40px;
-  max-width: 950px;
+  max-width: 900px;
   margin: auto;
 }
 
@@ -91,54 +91,42 @@ h4 {
   margin-top: 30px;
 }
 
-/* --- WIKI --- */
-.wiki-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  background: #152f3a;
-  border-left: 4px solid #00c8d6;
-  padding: 12px;
-  margin-bottom: 25px;
-  border-radius: 6px;
-}
-
+/* --- WIKI NAV --- (par défaut visible, ajusté en responsive plus bas) */
 .wiki-nav a {
   display: inline-block;
   margin: 5px 10px 5px 0;
   padding: 6px 12px;
-  background: #0f1c24;
   border: 1px solid #00c8d6;
   border-radius: 4px;
   color: #e6f1f5;
   text-decoration: none;
   transition: background 0.3s, color 0.3s;
-  font-size: 0.8em;
+  font-size: 0.85em;
 }
 
-.wiki-nav a {
-  flex: 1 1 auto;
-  text-align: center;
-  min-width: 120px;
-}
-
-.wiki-nav a:hover {
+.wiki-nav a:hover,
+.wiki-nav a.active {
   background: #00c8d6;
   color: #0f1c24;
 }
 
+/* Sections visibles en continu */
 .wiki-section {
-  display: none;
+  display: block;
   background: #152f3a;
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #1f3b47;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  margin-bottom: 40px;
+  scroll-margin-top: 100px; /* espace sous le header */
 }
 
-.wiki-section.active {
-  display: block;
-  animation: fadeIn 0.4s ease-in-out;
+.wiki-section,
+h2,
+h3,
+h4 {
+  scroll-margin-top: 100px; /* espace en haut quand on clique sur un lien */
 }
 
 .wiki-section h2 {
@@ -182,30 +170,28 @@ a:hover {
   }
 }
 
-/* IFRAMES VIDEOS ET IMAGES */
+/* IFRAMES, VIDEOS ET IMAGES */
 iframe,
 video,
 img {
-  display: block; /* prend toute la ligne */
-  margin: 20px auto; /* centre horizontalement */
-  max-width: 100% !important; /* ne dépasse pas la largeur du conteneur */
-  height: auto; /* garde les proportions (sauf si fixé en HTML) */
-  border-radius: 6px; /* arrondis discrets */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* petite ombre pour le style */
+  display: block;
+  margin: 20px auto;
+  max-width: 100% !important;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Option : limiter un peu la largeur sur grand écran */
 iframe {
   max-width: 800px;
 }
 
-/* Conteneur responsive pour les vidéos */
 .video-container {
   position: relative;
   width: 100%;
   max-width: 560px;
   margin: 20px auto;
-  padding-bottom: 56.25%; /* ratio 16:9 */
+  padding-bottom: 56.25%;
   overflow: hidden;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -247,39 +233,100 @@ footer {
 }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    flex-direction: column;
-    background: #102a33;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    padding: 15px;
-    border-left: 2px solid #00c8d6;
-  }
 
-  .nav-menu.active {
+/* Menu latéral desktop */
+@media (min-width: 1024px) {
+  .wiki-nav {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 220px;
+    height: calc(100% - 80px);
     display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #152f3a;
+    border-right: 3px solid #00c8d6;
+    padding: 15px;
+    border-radius: 0;
+    gap: 8px;
+    z-index: 900;
   }
 
-  .hamburger {
-    display: block;
+  main {
+    margin-left: 240px;
+    max-width: 900px;
   }
 
   .wiki-nav a {
-    flex: 1 1 auto;
-    text-align: center;
+    text-align: left;
+    margin: 0;
+  }
+}
+
+/* Menu horizontal tablette/mobile */
+@media (max-width: 1023px) {
+  .wiki-nav {
+    position: relative;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: none;
+    border-bottom: 3px solid #00c8d6;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #152f3a;
+    border-radius: 6px;
+    gap: 10px;
+  }
+
+  .wiki-nav a {
     min-width: 120px;
+    text-align: center;
+  }
+
+  main {
+    margin-left: 0;
+    padding: 90px 15px 40px;
   }
 }
 
 @media (max-width: 500px) {
   .wiki-nav {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .wiki-nav a {
     width: 100%;
+  }
+}
+
+.back-to-top {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.back-to-top a {
+  font-size: 0.8em;
+  color: #00c8d6;
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid #00c8d6;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.back-to-top a:hover {
+  background: #00c8d6;
+  color: #0f1c24;
+}
+
+/* N'afficher le lien retour qu'en responsive */
+@media (min-width: 1024px) {
+  .back-to-top {
+    display: none;
   }
 }
