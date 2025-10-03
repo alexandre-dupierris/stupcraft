@@ -39,3 +39,45 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', activateLink)
   activateLink() // active dès le chargement
 })
+
+async function main() {
+  fetch('https://api.mcsrvstat.us/2/stupeflipcraft.mine.fun')
+    .then((response) => response.json())
+    .then((data) => {
+      const statusDiv = document.getElementById('server-status')
+      if (data.online) {
+        statusDiv.innerHTML = `✅ Serveur en ligne avec ${data.players.online} joueurs connectés.`
+        statusDiv.style.color = 'green'
+      } else {
+        statusDiv.innerHTML = '❌ Serveur hors ligne.'
+        statusDiv.style.color = 'red'
+      }
+    })
+
+  fetch('./news.json') // Charge le fichier JSON
+    .then((response) => response.json()) // Convertit la réponse en JSON
+    .then((data) => {
+      const newsContainer = document.getElementById('news-container')
+      // newsContainer.innerHTML = ""; // Vide le contenu par défaut
+
+      data.forEach((news) => {
+        // Crée un bloc pour chaque news
+        const newsItem = document.createElement('div')
+        newsItem.classList.add('news-item') // Ajoute une classe CSS
+
+        newsItem.innerHTML = `
+                <h3>${news.title}</h3>
+                <small>${news.date}</small>
+                <p>${news.content}</p>
+            `
+
+        newsContainer.appendChild(newsItem) // Ajoute la news au conteneur
+      })
+    })
+    .catch((error) => {
+      console.error('Erreur lors du chargement des news :', error)
+      document.getElementById('news-container').innerHTML =
+        '⚠️ Impossible de charger les news.'
+    })
+}
+main()
