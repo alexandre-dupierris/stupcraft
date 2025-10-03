@@ -340,3 +340,21 @@ footer {
     display: none;
   }
 }
+
+.gif {
+  position: absolute;
+  bottom: 0;
+  width: 75px; /* taille du gif */
+  animation: defilement 10s linear infinite;
+  border: none;
+  background: transparent;
+}
+
+@keyframes defilement {
+  0% {
+    right: -150px;
+  }
+  100% {
+    right: 100%;
+  }
+}
