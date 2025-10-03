@@ -270,6 +270,9 @@ footer {
 
 /* Menu horizontal tablette/mobile */
 @media (max-width: 1023px) {
+  header {
+    flex-direction: column;
+  }
   .wiki-nav {
     position: relative;
     width: auto;
