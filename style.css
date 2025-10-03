@@ -273,6 +273,9 @@ footer {
   header {
     flex-direction: column;
   }
+  h1 {
+    font-size: 1.85em;
+  }
   .wiki-nav {
     position: relative;
     width: auto;
