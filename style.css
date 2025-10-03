@@ -95,6 +95,11 @@ h4 {
   text-align: center;
 }
 
+ul,
+ol {
+  padding-left: 2em;
+}
+
 /* --- WIKI NAV --- (par défaut visible, ajusté en responsive plus bas) */
 .wiki-nav a {
   display: inline-block;
